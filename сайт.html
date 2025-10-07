@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Абылай хан — Қазақстан батырлары</title>
+  <meta name="description" content="Абылай хан — қазақтың ұлы ханы, мемлекет қайраткері, дипломат және қолбасшы. Толық өмірбаян, зерттеулер, галерея және поэзия.">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <style>
+    * { box-sizing: border-box; }
+    html,body { margin:0; padding:0; height:100%; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      font-family: "Georgia", "Times New Roman", serif;
+      color:#1f1140;
+      background: linear-gradient(180deg,#f7f5fb 0%, #f1ecff 100%);
+    }
+
+    header {
+      position:sticky; top:0; z-index:999;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(90deg,#4b1f78 0%, #7a3db5 60%);
+      color:white;
+      padding:18px 28px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+    }
+
+    .brand { font-weight:800; font-size:22px; letter-spacing:1px; }
+
+    nav {
+      display:flex; gap:14px; align-items:center;
+      transition: max-height .4s ease;
+    }
+
+    nav a {
+      color:white; text-decoration:none;
+      padding:10px 14px; border-radius:20px;
+      font-weight:600; transition:all .25s;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(2px);
+    }
+    nav a:hover { background: rgba(255,255,255,0.12); transform:translateY(-3px); }
+
+    /* burger */
+    .burger {
+      display:none; flex-direction:column; gap:5px; cursor:pointer;
+    }
+    .burger span {
+      width:24px; height:3px; background:white; border-radius:2px;
+      transition:all .3s;
+    }
+
+    @media (max-width:720px){
+      nav {
+        position:absolute; top:70px; left:0; right:0;
+        background:linear-gradient(180deg,#4b1f78,#7a3db5);
+        flex-direction:column; align-items:center;
+        overflow:hidden; max-height:0;
+      }
+      nav.open { max-height:400px; padding:10px 0; }
+      .burger { display:flex; }
+    }
+
+    .hero {
+      padding:70px 18px 50px;
+      text-align:center;
+      background: linear-gradient(180deg, rgba(75,31,120,0.12), rgba(122,61,181,0.05));
+    }
+    .hero h1 {
+      margin:0; font-size:56px; color:#2a1060;
+      text-shadow: 0 6px 30px rgba(122,61,181,0.12);
+      font-weight:900;
+      animation: fadeUp .9s ease both;
+    }
+    .hero p {
+      max-width:980px; margin:18px auto 0; font-size:20px; color:#3a2550;
+      line-height:1.6;
+      animation: fadeUp .9s .15s both;
+    }
+
+    main { max-width:1200px; margin:40px auto; padding:0 20px 80px; }
+
+    section { margin-bottom:48px; opacity:0; transform:translateY(32px); transition:all .8s cubic-bezier(.2,.9,.3,1); }
+    section.visible { opacity:1; transform:translateY(0); }
+
+    h2.section-title {
+      text-align:center; color:#4b1f78; font-size:42px; margin:12px 0 28px;
+      text-shadow:0 3px 12px rgba(74,28,120,0.06);
+    }
+
+    .bio {
+      background: linear-gradient(180deg, #fff, #fbf8ff);
+      border-radius:18px; padding:28px 30px;
+      box-shadow: 0 10px 30px rgba(120,60,160,0.06);
+      font-size:18px; line-height:1.85;
+    }
+    .bio p { margin:18px 0; text-indent:28px; }
+
+    footer {
+      padding:26px; text-align:center;
+      background: linear-gradient(90deg,#4b1f78 0%, #7a3db5 60%);
+      color:white;
+    }
+
+    @keyframes fadeUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:none;} }
+
+    .muted { color:#6b5b7f; font-size:15px; }
+    button.btn {
+      background:#6d2fb0; color:white; border:0; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:700;
+      box-shadow: 0 8px 20px rgba(109,47,176,0.18);
+    }
+    .small { font-size:13px; padding:8px 10px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">ALT — Абылай хан</div>
+    <div class="burger" id="burger">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="nav">
+      <a href="#hero">Басты бет</a>
+      <a href="#bio">Өмірбаяны</a>
+      <a href="#timeline">Хронология</a>
+      <a href="#gallery">Галерея</a>
+      <a href="#books">Кітаптар</a>
+      <a href="#poetry">Поэзия</a>
+      <a href="#contact">Байланыс</a>
+    </nav>
+  </header>
+
+  <section id="hero" class="hero">
+    <h1>Абылай хан</h1>
+    <p>
+      Абылай хан (1711 — 1781) — қазақ тарихындағы көрнекті мемлекет қайраткері, дипломат және қолбасшы.
+    </p>
+  </section>
+
+  <main>
+    <section id="bio">
+      <h2 class="section-title">Өмірбаяны</h2>
+      <div class="bio">
+        <p>Абылай хан (шын аты Әбілмансұр, 1711–1781) — XVIII ғасырдың ең ірі мемлекет қайраткерлерінің бірі.</p>
+        <p>Ол қазақ халқының бірлігін нығайтып, сыртқы саясатта теңдік орнатуға күш салды.</p>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <h2 class="section-title">Хронология</h2>
+      <div class="bio">
+        <p>1711 — Туған жылы.</p>
+        <p>1730 — Жоңғар шапқыншылығына қарсы күрес.</p>
+        <p>1781 — Дүниеден өткен жылы.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Байланыс</h2>
+      <div class="bio" style="text-align:center;">
+        <p>📞 Телефон: <strong>+7 705 801 8860</strong></p>
+        <p>✉️ Email: <strong>altworkmuhamed@gmail.com</strong></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 ALT — Қазақстан батырлары.
+  </footer>
+
+  <script>
+    // burger open/close
+    const burger = document.getElementById('burger')
+    const nav = document.getElementById('nav')
+    burger.addEventListener('click', ()=>{
+      nav.classList.toggle('open')
+      burger.classList.toggle('active')
+    })
+
+    // smooth reveal animation
+    const sections = document.querySelectorAll('main section')
+    function reveal(){
+      sections.forEach(s=>{
+        const r = s.getBoundingClientRect()
+        if(r.top < window.innerHeight - 80) s.classList.add('visible')
+      })
+    }
+    window.addEventListener('scroll', reveal)
+    window.addEventListener('load', reveal)
+  </script>
+</body>
+</html>
